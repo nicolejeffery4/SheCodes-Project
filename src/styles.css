@@ -1,0 +1,53 @@
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 70px;
+  font-family: "Pacifico", cursive;
+  font-size: 50px;
+  line-height: 65px;
+}
+
+body {
+  background: linear-gradient(to left, #dfe9f3 0%, white 100%);
+}
+
+.container {
+  border: solid gray;
+}
+
+.city-search {
+  position: relative;  
+  margin-top: 20px;
+  margin-left: 250px;
+}
+
+
+
+.todays-weather {
+  margin: 0 auto;
+  padding: 80px;
+  border-radius: 220px;
+  max-width: 600px;
+  display: block;
+  position: center;
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.weeks-weather {
+  margin: 30px;
+}
+
+h2,
+p {
+  text-align: center;
+}
+
+h2 {
+  font-size: 90px;
+  margin-bottom: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.city {
+  font-size: 30px;
+}
