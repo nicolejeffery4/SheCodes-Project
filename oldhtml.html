@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div class="container header">
+    <div class="container">
         <form class="row g-3 city-search">
             <div class="col-auto">
                 <label for="citySearch" class="visually-hidden">Search for city here</label>
@@ -24,49 +24,41 @@
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary mb-3">Search</button>
-                <button type="submit" class="btn btn-primary mb-3">🎯</button>
             </div>
         </form>
         <h1>
             Hey Nix, What's the Weather?
         </h1>
-        <div class="container">
-            <div class="row todays-weather">
-                <div class="col-12 city" id="city">Bristol</div>
-            <div class="row">
-                <div class="col-12">
-                        <span id="time">1500</span>
-                        <span id="day">Monday</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12" id="description">Partially Cloudy</div>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                        <img src="images/intermittent rain.png" width="70px" />
-                </div>
-                <div class="col-4">
-                        <span class="temperature" id="temperature">18º</span>
-                        <span class="units">
+        <div class="card text-left row todays-weather">
+            <div class="col-6">
+                <p class="city" id="city">
+                    Bristol
+                </p>
+                <p class="card-title">
+                    <span id="time">1500</span>
+                    <span id="day">Monday</span>
+                </p>
+                </br>
+                <img src="images/intermittent rain.png" width="150px" />
+                <h2 class="card-text">
+                    <span class="temperature" id="temperature">18º</span>
+                    <span class="units">
                         <a href="#" class="celsius">C</a>
                         |
                         <a href="#" class="fahrenheit">F</a>
-                        </span>
-                </div>
-                <div class="col-6">
-                    <ul>
-                        <li>
-                            Precipitation: <span id="precipitation">10%</span>
-                        </li>
-                        <li>
-                            Wind speed: <span id="wind-speed">10km/hr</span>
-                        </li>
-                        <li>
-                            Humidity: <span id="humidity">50%</span>
-                        </li>
-                    </ul>
-                </div>
+                    </span>
+                </h2>
+            </div>
+            <div class="col-6">
+                <p>
+                    Precipitation: <span id="precipitation"></span>
+                </p>
+                <p>
+                    Wind speed: <span id="wind-speed"></span>
+                </p>
+                <p>
+                    Humidity: <span id="humidity"></span>
+                </p>
             </div>
         </div>
         <div class="card-group weeks-weather">
@@ -115,4 +107,5 @@
         </p>
     </footer>
 </body>
+
 </html>

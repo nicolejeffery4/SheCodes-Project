@@ -13,12 +13,16 @@ let days = [
 let currentDay = days[currentTime.getDay()];
 let currentHour = currentTime.getHours();
 let currentMinutes = currentTime.getMinutes();
+if (currentMinutes <10) {
+    currentMinutes =`0${currentMinutes}`;
+}
 
 let formattedTime = document.querySelector("#time");
 formattedTime.innerHTML = `${currentHour}${currentMinutes}`;
 
 let formattedDay = document.querySelector("#day");
 formattedDay.innerHTML = `${currentDay}`;
+
 
 function citySearch(event) {
   event.preventDefault();
@@ -39,5 +43,5 @@ form.addEventListener("submit", citySearch);
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let temperatureInput = document.querySelector("#temperature");
-  temperatureInput.innerHTML = `${temperature}ºC`;
+  temperatureInput.innerHTML = `${temperature}º`;
 }
