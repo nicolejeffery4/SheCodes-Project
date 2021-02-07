@@ -18,7 +18,7 @@ if (currentMinutes <10) {
 }
 
 let formattedTime = document.querySelector("#time");
-formattedTime.innerHTML = `${currentHour}${currentMinutes}`;
+formattedTime.innerHTML = `${currentHour}:${currentMinutes}`;
 
 let formattedDay = document.querySelector("#day");
 formattedDay.innerHTML = `${currentDay}`;
@@ -44,4 +44,42 @@ function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let temperatureInput = document.querySelector("#temperature");
   temperatureInput.innerHTML = `${temperature}º`;
+
+  celsiusTemperature = response.data.main.temp;
+
+  let description = document.querySelector("#description");
+  description.innerHTML = response.data.weather[0].description;
+
+  let windspeed = document.querySelector("#wind");
+  windspeed.innerHTML = Math.round(response.data.wind.speed);
+
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = response.data.main.humidity;
+
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  )
 }
+
+function displayFahrenheitTemperature(event) {
+    event.preventDefault();
+    let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+    let temperature = document.querySelector("#temperature");
+    temperature.innerHTML = Math.round(fahrenheitTemperature)
+}
+
+function displayCelsiusTemperature(event) {
+    event.preventDefault();
+    let temperature = document.querySelector("#temperature");
+    temperature.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", displayCelsiusTemperature)
