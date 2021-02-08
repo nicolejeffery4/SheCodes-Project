@@ -24,6 +24,10 @@ img {
     top: 12px;
 }
 
+h5 {
+    margin-top: 15px;
+}
+
 .header {
   border: solid gray;
 }
@@ -46,7 +50,6 @@ img {
 .weeks-weather {
   margin: 30px;
 }
-
 
 .city {
   font-size: 30px;

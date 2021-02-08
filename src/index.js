@@ -35,10 +35,10 @@ function citySearch(event) {
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTemperature);
-}
 
-let form = document.querySelector("form");
-form.addEventListener("submit", citySearch);
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showForecast);
+}
 
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
@@ -63,6 +63,37 @@ function showTemperature(response) {
   )
 }
 
+function showForecast(response) {
+  console.log(response.data)
+
+  let forecastTemperatureOne = Math.round(response.data.list[1].main.temp);
+  let temperatureOneInput = document.querySelector("#temperature-one");
+  temperatureOneInput.innerHTML = `${forecastTemperatureOne}`;
+
+  let forecastTemperatureTwo = Math.round(response.data.list[2].main.temp);
+  let temperatureTwoInput = document.querySelector("#temperature-two");
+  temperatureTwoInput.innerHTML = `${forecastTemperatureTwo}`;
+
+  let forecastTemperatureThree = Math.round(response.data.list[3].main.temp);
+  let temperatureThreeInput = document.querySelector("#temperature-three");
+  temperatureThreeInput.innerHTML = `${forecastTemperatureThree}`;
+
+  let forecastIconOne = document.querySelector("#icon-one");
+  forecastIconOne.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.list[1].weather[0].icon}@2x.png`)
+  
+  let forecastIconTwo = document.querySelector("#icon-two");
+  forecastIconTwo.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.list[2].weather[0].icon}@2x.png`)
+
+  let forecastIconThree = document.querySelector("#icon-three");
+  forecastIconThree.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.list[3].weather[0].icon}@2x.png`)
+}
+
 function displayFahrenheitTemperature(event) {
     event.preventDefault();
     let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
@@ -83,3 +114,6 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature)
+
+let form = document.querySelector("form");
+form.addEventListener("submit", citySearch);
