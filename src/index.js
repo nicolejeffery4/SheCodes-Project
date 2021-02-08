@@ -64,8 +64,7 @@ function showTemperature(response) {
 }
 
 function showForecast(response) {
-  console.log(response.data)
-
+    console.log(response.data)
   let forecastTemperatureOne = Math.round(response.data.list[1].main.temp);
   let temperatureOneInput = document.querySelector("#temperature-one");
   temperatureOneInput.innerHTML = `${forecastTemperatureOne}`;
@@ -107,6 +106,18 @@ function displayCelsiusTemperature(event) {
     temperature.innerHTML = Math.round(celsiusTemperature);
 }
 
+function retrievePosition(position) {
+    let apiKey = "6446ee557ff31f6e26e69f3781c07d0f";
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    axios.get(weatherUrl).then(showTemperature);
+    axois.get(forecastUrl).then(showForecast);
+}
+
+navigator.geolocation.getCurrentPosition(retrievePosition);
+
 let celsiusTemperature = null;
 
 let fahrenheitLink = document.querySelector("#fahrenheit");
@@ -117,3 +128,6 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature)
 
 let form = document.querySelector("form");
 form.addEventListener("submit", citySearch);
+
+let targetButton = document.querySelector("#target");
+targetButton.addEventListener("click", retrievePosition)
