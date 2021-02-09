@@ -64,7 +64,6 @@ function showTemperature(response) {
 }
 
 function showForecast(response) {
-    console.log(response.data)
   let forecastTemperatureOne = Math.round(response.data.list[1].main.temp);
   let temperatureOneInput = document.querySelector("#temperature-one");
   temperatureOneInput.innerHTML = `${forecastTemperatureOne}`;
@@ -111,9 +110,9 @@ function retrievePosition(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
     let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-    let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
     axios.get(weatherUrl).then(showTemperature);
-    axois.get(forecastUrl).then(showForecast);
+    axios.get(forecastUrl).then(showForecast);
 }
 
 navigator.geolocation.getCurrentPosition(retrievePosition);
